@@ -1,0 +1,14 @@
+{
+  "name": "relato",
+  "version": "0.1.0",
+  "authors": [
+    "Ben Ripkens <bripkens.dev@gmail.com>"
+  ],
+  "homepage": "http://bripkens.de",
+  "private": true,
+  "dependencies": {
+    "react": "~0.8.0",
+    "normalize-css": "~2.1.3",
+    "font-awesome": "~4.0.3"
+  }
+}
