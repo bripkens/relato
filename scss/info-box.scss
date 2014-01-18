@@ -1,0 +1,27 @@
+.info-box {
+  color: #333;
+  background-color: #fff;
+  border-color: #DEDFE0 #C8C8C8 #C8C8C8;
+  border-style: solid;
+  border-width: 1px;
+  padding: 0.8em 1em 0.5em;
+
+  @include box-shadow(1px 1px 2px rgba(0, 0, 0, 0.08));
+
+  h2 {
+    margin: 0 0 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+
+  .stat {
+    color: #434D55;
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+  }
+}

@@ -3,10 +3,27 @@
 }
 
 body {
-  background-color: #6A6A6A;
-  color: #fff;
-  font-family: 'Open Sans', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  background-color: #F6F6F6;
+  color: #333;
+  font-size: 16px;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  padding: 1em;
+  margin: 0;
+}
+
+.block {
+  @include box-shadow(1px 1px 3px rgba(0, 0, 0, 0.13));
+  margin-bottom: 2em;;
+  background: #fff;
+
+  h2 {
+    padding: .39em .39em 0;
+    margin: 0;
+    font-weight: 200;
+    font-size: 1.8em;
+    line-height: 2;
+  }
 }

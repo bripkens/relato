@@ -1,0 +1,57 @@
+.stats-overview {
+  @extend .block;
+  @extend .clearfix;
+
+  p {
+    margin: 0 .8em 1em;
+  }
+
+  h3 {
+    margin: 1em 0.45em 0.6em;
+    font-weight: 200;
+  }
+
+  table {
+    @extend .table;
+
+    margin-bottom: 1em;
+    font-weight: 200;
+
+    tr {
+      &:nth-child(even) td {
+        background-color: #f9f9f9;
+      }
+
+      &:hover td {
+        background-color: #f0f0f0;
+      }
+    }
+
+    & > thead > tr > th {
+      border-bottom-width: 1px;
+    }
+
+    th, td {
+      text-align: right;
+      background-color: #fff;
+      border-left: 1px solid #ddd;
+
+      &:first-child {
+        text-align: left;
+        border-left: 0;
+      }
+    }
+
+    th {
+      color: #3398FF;
+      font-weight: 400;
+    }
+  }
+
+  ul {
+    @extend .pagination;
+    float: right;
+    clear: right;
+    margin: 0 .4em .4em 0;
+  }
+}

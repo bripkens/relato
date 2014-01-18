@@ -1,5 +1,14 @@
-@import "CSS:../vendor/normalize-css/normalize";
+@import "CSS:../vendor/bootstrap/dist/css/bootstrap";
 
+@import "compass/css3/box-shadow";
 
 @import "util";
 @import "base";
+
+// Elements
+@import "info-box";
+
+// Blocks
+@import "header";
+@import "footer";
+@import "stats-overview";
