@@ -19,7 +19,7 @@
 
     <ul>
       <li class="info-box">
-        <h2>Last Update</h2>
+        <h2>Current as of</h2>
         <span class="stat">2014-01-07</span>
       </li>
       <li class="info-box">
@@ -44,49 +44,50 @@
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, praesentium, architecto, ex, aut iusto quo magni velit nihil consequatur natus id hic expedita debitis blanditiis distinctio voluptatem perspiciatis laborum nesciunt reiciendis officia sunt deserunt unde ipsum veniam ea? Ab, odit, doloremque, dolorem culpa aliquam consectetur veritatis dolorum debitis cumque neque magni harum qui quis tempora eum asperiores quae. Necessitatibus, earum, totam laudantium aliquam odio praesentium aliquid dolorum fugit assumenda cumque saepe ipsum voluptatum fuga illo obcaecati a iusto sint ut architecto dolore eaque quam nemo asperiores in quod deserunt labore error tempora dolor ducimus. Mollitia, voluptates placeat distinctio vel nam illum tenetur. Consectetur, neque, et magni sapiente alias autem nihil veniam consequuntur at possimus facilis nam recusandae fugiat vitae pariatur suscipit impedit reiciendis laborum velit ut. Debitis, ad, eos, deserunt, incidunt accusantium qui explicabo iure reprehenderit cupiditate aut tempora vitae earum pariatur voluptatibus facere quia doloremque error consequuntur repellendus ullam ipsum sed consequatur. Ullam, et, porro sint rem eligendi magnam reprehenderit culpa assumenda dolore illo sunt distinctio eveniet quaerat vel ipsam necessitatibus itaque fuga voluptatibus pariatur soluta aperiam nulla maiores ratione esse optio voluptate rerum provident. Architecto aliquid expedita veritatis pariatur nisi minima ipsum error qui quam incidunt. Assumenda, qui, temporibus, porro enim velit dolores quos fuga ad fugit hic iusto magnam. Tempore, sunt asperiores nobis placeat labore nesciunt. Aliquam, recusandae, aperiam, voluptate at cum non voluptates esse amet sit architecto dignissimos explicabo corrupti obcaecati necessitatibus aliquid magni asperiores dolor eveniet quibusdam earum eos tempore eum ipsam officiis delectus ab dolores repudiandae facilis autem velit. Fuga, quae, sint, temporibus vel quibusdam blanditiis itaque facere alias enim sed deleniti illum ea sunt deserunt nisi fugiat dolores aliquam rem. Consequuntur, corporis, dolore hic nemo voluptatum dolorem harum deserunt unde vel quibusdam perferendis ex voluptate in quisquam ab sequi ullam quas veniam illum.
     </p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th># users</th>
-          <th># runtime users</th>
-          <th># development users</th>
-          <th>Page Rank</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>mocha</td>
-          <td>12324</td>
-          <td>43</td>
-          <td>12281</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>grunt</td>
-          <td>6190</td>
-          <td>123</td>
-          <td>6067</td>
-          <td>9.84</td>
-        </tr>
-        <tr>
-          <td>underscore</td>
-          <td>5137</td>
-          <td>4164</td>
-          <td>1009</td>
-          <td>9.45</td>
-        </tr>
-        <tr>
-          <td>should</td>
-          <td>4673</td>
-          <td>1749</td>
-          <td>3123</td>
-          <td>9</td>
-        </tr>
-      </tbody>
-    </table>
+    <div id="npm-data">
+      <!-- <table id="npm-data">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th># users</th>
+            <th># runtime users</th>
+            <th># development users</th>
+            <th>Page Rank</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>mocha</td>
+            <td>12324</td>
+            <td>43</td>
+            <td>12281</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>grunt</td>
+            <td>6190</td>
+            <td>123</td>
+            <td>6067</td>
+            <td>9.84</td>
+          </tr>
+          <tr>
+            <td>underscore</td>
+            <td>5137</td>
+            <td>4164</td>
+            <td>1009</td>
+            <td>9.45</td>
+          </tr>
+          <tr>
+            <td>should</td>
+            <td>4673</td>
+            <td>1749</td>
+            <td>3123</td>
+            <td>9</td>
+          </tr>
+        </tbody>
+      </table> -->
 
-    <ul>
+          <!-- <ul class="pagination">
       <li><a href="#">&laquo;</a></li>
       <li><a href="#">1</a></li>
       <li><a href="#">2</a></li>
@@ -94,17 +95,67 @@
       <li><a href="#">4</a></li>
       <li><a href="#">5</a></li>
       <li><a href="#">&raquo;</a></li>
-    </ul>
-
-    <h3>Data Collection</h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, laboriosam, enim perspiciatis expedita doloribus delectus magnam facilis neque fuga asperiores et distinctio itaque quia. Consequatur, labore explicabo eum ipsa adipisci.
-    </p>
+    </ul> -->
+    </div>
 
     <h3>Disclaimer</h3>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, rerum, voluptatem veniam et consequuntur deleniti ipsum tempore cumque eveniet repellendus modi porro natus harum eum nesciunt similique quidem suscipit libero.
+      The presented data only captures dependencies and statistics of
+      published NPM projects, i.e. frameworks and libraries. This means that
+      you will not find any information about "normal projects", i.e. private
+      or at least not published Node projects, e.g. web applications,
+      which are only using open source projects, but that
+      never appearing as dependencies of other projects.
     </p>
+    <p>
+      A result of this limitation is that libraries and test frameworks
+      have a high number of users and therefore high Page Rank, whereas
+      other frameworks such as Express, that are mostly being used by
+      for "normal projects", have a relatively low Page Rank. This becomes
+      even more evident by the number of GitHub stars for Mocha (a test
+      framework) and Express (web framework). Express has a vastly lower
+      Page Rank, but has three times the amount of stars (~12k vs. 4k).
+    </p>
+
+    <h3>Future Work</h3>
+    <p>
+      While one can never take into account every NPM using project
+      (which would need to include closed source software), it would be
+      nice if the analysis included non published, but open source projects.
+      Such data could be collected by crawling GitHub, BitBucket and other
+      source code hosting sites. By doing so we could cope
+      with the limitations mentioned in the disclaimer (to some degree).
+    </p>
+    <p>
+      In addition to this, the following topics are interesting.
+    </p>
+    <ul>
+      <li>
+        What are the most influential projects? Currently we are only
+        providing one centrality measurement, i.e. Page Rank, but other
+        measurements are interesting as well. We also want to provide different
+        centrality measurements for different dependency types (runtime /
+        development dependency).
+      </li>
+      <li>
+        Who are the most influential open source contributors?
+      </li>
+      <li>
+        What effect does a new release of an open source project have?
+        <ul>
+          <li>
+            How many project will immediately use a new version because of
+            <a href="ttps://github.com/isaacs/node-semver">version ranges</a>?
+          </li>
+          <li>
+            How long does it take until a new version is used?
+          </li>
+          <li>
+            Are there any versions that have not been used at all?
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 
   <footer>
@@ -121,6 +172,6 @@
 <script src="vendor/react/react.js"></script>
 <script src="vendor/closure-library/closure/goog/base.js"></script>
 <script src="app.js"></script>
-<!--<script type="text/javascript">goog.require("relato.core");</script>-->
+<script type="text/javascript">goog.require("relato.core");</script>
 </body>
 </html>

@@ -6,3 +6,5 @@ node_modules/
 .bundle/
 vendor/
 target/
+.lein-repl-history
+stats.csv

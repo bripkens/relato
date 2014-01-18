@@ -48,8 +48,7 @@
     }
   }
 
-  ul {
-    @extend .pagination;
+  ul.pagination {
     float: right;
     clear: right;
     margin: 0 .4em .4em 0;
