@@ -18,7 +18,9 @@
 (def items-per-page 50)
 
 (def app-state (atom {:npm-projects [{:name "foo"}]
-                      :page 0}))
+                      :page 0
+                      :sort {:predicate :page-rank
+                             :order :desc}}))
 
 (defn npm-data-row [data owner]
   (om/component
@@ -32,7 +34,9 @@
 (defn get-visible-datasets [items page]
   (if (empty? items)
     items
-    (subvec items 0 (min (count items) items-per-page))))
+    (subvec items
+            (* page items-per-page)
+            (min (count items) (+ (* page items-per-page) items-per-page)))))
 
 (defn npm-data-table [data owner]
   (om/component
@@ -46,17 +50,27 @@
           (dom/th nil "Page Rank")))
       (dom/tbody nil
         (om/build-all npm-data-row
-                      (get-visible-datasets (:npm-projects data) 0 ))))))
+                      (get-visible-datasets (:npm-projects data)
+                                            (:page data)))))))
 
 (defn pagination [data owner]
   (om/component
-    (dom/ul #js {:className "pagination"}
-      (dom/li nil
-        (dom/a #js {:dangerouslySetInnerHTML #js {:__html "&laquo;"}} nil))
-      (dom/li nil
-        (dom/span nil "Page 1 / 10"))
-      (dom/li nil
-        (dom/a #js {:dangerouslySetInnerHTML #js {:__html "&raquo;"}} nil)))))
+    (let [page-count (.ceil js/Math (/ (count (:npm-projects data))
+                                       items-per-page))
+          page (:page data)]
+      (dom/ul #js {:className "pagination"}
+        ; TODO deactivate button when on first page
+        (dom/li nil
+          (dom/a #js {:dangerouslySetInnerHTML #js {:__html "&laquo;"}
+                      :onClick #(om/transact! data :page dec)}
+                 nil))
+        (dom/li nil
+          (dom/span nil (str "Page " (+ 1 page) " / " page-count)))
+        (dom/li nil
+          ; TODO deactivate button when on last page
+          (dom/a #js {:dangerouslySetInnerHTML #js {:__html "&raquo;"}
+                      :onClick #(om/transact! data :page inc)}
+                 nil))))))
 
 (om/root app-state
          (fn [app owner]
