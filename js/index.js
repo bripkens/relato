@@ -198,7 +198,9 @@
 
   var LoadingNotification = React.createClass({
     render: function() {
-      return dom.div({className: 'loading'}, 'Please wait, loading!');
+      return dom.div({className: 'loading'},
+        dom.img({src: 'img/loading-animation.gif'}),
+        dom.p({}, 'Downloading statistics, please wait...'));
     }
   });
 
@@ -226,6 +228,16 @@
   });
 
 
+  var updateStats = function(projects) {
+    var nodes = projects.length;
+    var edges = projects.reduce(function(n, project) {
+      return n + project.runtimeUsers + project.developmentUsers;
+    }, 0);
+    document.getElementById('projectCount').innerText = nodes;
+    document.getElementById('referenceCount').innerText = edges;
+  };
+
+
   var Relato = React.createClass({
     getInitialState: function() {
       return {
@@ -244,6 +256,7 @@
       loadCsv()
       .then(transformToJs)
       .then(function(projects) {
+        updateStats(projects);
         var appState = self.getInitialState();
         appState.projects = projects;
         sortProjectData(appState);
