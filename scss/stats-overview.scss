@@ -12,6 +12,7 @@
 
   table {
     @extend .table;
+    clear: both;
 
     margin: 0 0 1em;
     font-weight: 200;

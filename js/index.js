@@ -218,7 +218,8 @@
           'id': 'search',
           onChange: function(e) {
             var query = e.target.value.toLowerCase();
-            var filtered = self.props.appState.projects.filter(function(project) {
+            var projects = self.props.appState.projects;
+            var filtered = projects.filter(function(project) {
               return project.name.toLowerCase().indexOf(query) !== -1;
             });
             self.props.appState.query = query;
@@ -236,8 +237,10 @@
     var edges = projects.reduce(function(n, project) {
       return n + project.runtimeUsers + project.developmentUsers;
     }, 0);
-    document.getElementById('projectCount').innerText = numeral(nodes).format('0,0');
-    document.getElementById('referenceCount').innerText = numeral(edges).format('0,0');
+    document.getElementById('projectCount').innerHTML =
+      numeral(nodes).format('0,0');
+    document.getElementById('referenceCount').innerHTML =
+      numeral(edges).format('0,0');
   };
 
 
