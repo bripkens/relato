@@ -8,9 +8,8 @@
   "private": true,
   "dependencies": {
     "react": "~0.8.0",
-    "font-awesome": "~4.0.3",
-    "closure-library": "*",
     "fuzzy.js": "*",
-    "bootstrap": "~3.0.3"
+    "bootstrap": "~3.0.3",
+    "promise-0.1.1.min": "http://s3.amazonaws.com/es6-promises/promise-0.1.1.min.js"
   }
 }
