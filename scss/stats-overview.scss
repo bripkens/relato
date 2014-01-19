@@ -1,6 +1,5 @@
 .stats-overview {
   @extend .block;
-  @extend .clearfix;
 
   p {
     margin: 0 .8em 1em;
@@ -14,7 +13,7 @@
   table {
     @extend .table;
 
-    margin-bottom: 1em;
+    margin: 0 0 1em;
     font-weight: 200;
 
     tr {
@@ -72,10 +71,27 @@
   ul.pagination {
     float: right;
     clear: right;
-    margin: 0 .4em .4em 0;
+    margin: 0 .4em 1.5em 0;
 
     a:hover {
       cursor: pointer;
+    }
+  }
+
+  .search {
+    float: left;
+    margin-left: .4em;
+    position: relative;
+    top: 5px;
+
+    label {
+      margin-right: 1em;
+      font-weight: 400;
+      color: #3398FF;
+    }
+
+    input {
+      width: 14em;
     }
   }
 }

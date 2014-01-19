@@ -57,7 +57,7 @@
       };
     }
 
-    appState.projects.sort(function(p1, p2) {
+    function comparator(p1, p2) {
       var v1 = getter(p1);
       var v2 = getter(p2);
 
@@ -68,7 +68,11 @@
       } else {
         return 0;
       }
-    });
+    }
+    appState.projects.sort(comparator);
+    if (appState.filteredProjects) {
+      appState.filteredProjects.sort(comparator);
+    }
 
     return appState;
   }
@@ -80,7 +84,8 @@
       var appState = this.props.appState;
       var pageLength = appState.pageLength;
       var page = appState.page;
-      var projects = appState.projects;
+      var projects = appState.query ? appState.filteredProjects
+                                    : appState.projects;
 
       var visibleProjects = [];
       if (projects.length > 0) {
@@ -142,7 +147,8 @@
     render: function() {
       var refresher = this.props.refresher;
       var appState = this.props.appState;
-      var projects = appState.projects;
+      var projects = appState.query ? appState.filteredProjects
+                                    : appState.projects;
       var pageLength = appState.pageLength;
       var page = appState.page;
       var pageCount = Math.ceil(projects.length / pageLength);
@@ -197,6 +203,29 @@
   });
 
 
+  var Search = React.createClass({
+    render: function() {
+      var self = this;
+      return dom.div({className: 'search'},
+        dom.label({htmlFor: 'search'}, 'Search'),
+        dom.input({
+          type: 'search',
+          'id': 'search',
+          onChange: function(e) {
+            var query = e.target.value.toLowerCase();
+            var filtered = self.props.appState.projects.filter(function(project) {
+              return project.name.toLowerCase().indexOf(query) !== -1;
+            });
+            self.props.appState.query = query;
+            self.props.appState.filteredProjects = filtered;
+            self.props.appState.page = 0;
+            self.props.refresher();
+          }
+        }));
+    }
+  });
+
+
   var Relato = React.createClass({
     getInitialState: function() {
       return {
@@ -236,8 +265,9 @@
       };
 
       return dom.div({},
-        DataTable({appState: this.state, refresher: refresher}),
-        Pagination({appState: this.state, refresher: refresher}));
+        Search({appState: this.state, refresher: refresher}),
+        Pagination({appState: this.state, refresher: refresher}),
+        DataTable({appState: this.state, refresher: refresher}));
     }
   });
 

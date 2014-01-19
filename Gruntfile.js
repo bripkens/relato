@@ -11,7 +11,6 @@ module.exports = function(grunt) {
         src: [
           'vendor/react/react.js',
           'vendor/promise-0.1.1.min/index.js',
-          'vendor/fuzzy.js/fuzzy.js',
           'js/index.js'
         ],
         dest: 'app.js',
@@ -44,7 +43,6 @@ module.exports = function(grunt) {
           'app.js': [
             'vendor/react/react.min.js',
             'vendor/promise-0.1.1.min/index.js',
-            'vendor/fuzzy.js/fuzzy.min.js',
             'js/index.js'
           ]
         }

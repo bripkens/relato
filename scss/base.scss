@@ -20,7 +20,8 @@ body {
 
 .block {
   @include box-shadow(1px 1px 3px rgba(0, 0, 0, 0.13));
-  margin-bottom: 2em;;
+  margin-bottom: 2em;
+  padding-bottom: 0.5em;
   background: #fff;
 
   h2 {
