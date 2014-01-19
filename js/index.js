@@ -244,7 +244,7 @@
       return {
         projects: [],
         page: 0,
-        pageLength: 10,
+        pageLength: 15,
         sort: {
           property: 'pageRank',
           ascending: false
