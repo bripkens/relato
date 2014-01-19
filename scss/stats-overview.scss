@@ -46,6 +46,10 @@
       font-weight: 400;
       cursor: pointer;
 
+      &:hover {
+        background-color: #f0f0f0;
+      }
+
       &.ascending, &.descending {
         &:after {
           display: inline-block;
@@ -76,6 +80,14 @@
     a:hover {
       cursor: pointer;
     }
+
+    li:first-child > a {
+      border-right: 0;
+    }
+
+    span {
+      font-weight: 200;
+    }
   }
 
   .search {
@@ -93,5 +105,9 @@
     input {
       width: 14em;
     }
+  }
+
+  dl {
+    margin-left: 2em;
   }
 }

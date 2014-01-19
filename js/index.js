@@ -176,7 +176,7 @@
               e.preventDefault();
             }})),
         dom.li({},
-          dom.span({}, 'Page ' + (page + 1) + ' / ' + pageCount)),
+          dom.span({}, 'Page ' + (page + 1) + ' / ' + Math.max(pageCount, 1))),
         dom.li({},
           dom.a({
             href: '#',

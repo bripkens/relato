@@ -1,11 +1,6 @@
-app.js
-app.css
-
 node_modules/
 .sass-cache/
 .bundle/
 vendor/
 target/
 .lein-repl-history
-stats.csv
-stats_partial.csv
