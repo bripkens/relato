@@ -133,7 +133,9 @@
         dom.tbody({},
           visibleProjects.map(function(project) {
             return dom.tr({},
-              dom.td({}, project.name),
+              dom.td({},
+                dom.a({href: 'https://npmjs.org/package/' + project.name},
+                  project.name)),
               dom.td({}, numeral(project.runtimeUsers +
                 project.developmentUsers).format('0,0')),
               dom.td({}, numeral(project.runtimeUsers).format('0,0')),
