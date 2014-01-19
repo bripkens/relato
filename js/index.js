@@ -182,7 +182,7 @@
             href: '#',
             dangerouslySetInnerHTML: {__html: "&raquo;"},
             onClick: function(e) {
-              appState.page = Math.min(pageCount, appState.page + 1);
+              appState.page = Math.min(pageCount - 1, appState.page + 1);
               refresher();
               e.preventDefault();
             }})),
