@@ -134,10 +134,11 @@
           visibleProjects.map(function(project) {
             return dom.tr({},
               dom.td({}, project.name),
-              dom.td({}, project.runtimeUsers + project.developmentUsers),
-              dom.td({}, project.runtimeUsers),
-              dom.td({}, project.developmentUsers),
-              dom.td({}, project.pageRank));
+              dom.td({}, numeral(project.runtimeUsers +
+                project.developmentUsers).format('0,0')),
+              dom.td({}, numeral(project.runtimeUsers).format('0,0')),
+              dom.td({}, numeral(project.developmentUsers).format('0,0')),
+              dom.td({}, numeral(project.pageRank).format('0,0.00')));
           })));
     }
   });
@@ -233,8 +234,8 @@
     var edges = projects.reduce(function(n, project) {
       return n + project.runtimeUsers + project.developmentUsers;
     }, 0);
-    document.getElementById('projectCount').innerText = nodes;
-    document.getElementById('referenceCount').innerText = edges;
+    document.getElementById('projectCount').innerText = numeral(nodes).format('0,0');
+    document.getElementById('referenceCount').innerText = numeral(edges).format('0,0');
   };
 
 

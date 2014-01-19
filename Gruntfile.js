@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         src: [
           'vendor/react/react.js',
           'vendor/promise-0.1.1.min/index.js',
+          'vendor/numeral/min/numeral.min.js',
           'js/index.js'
         ],
         dest: 'app.js',
@@ -20,13 +21,22 @@ module.exports = function(grunt) {
     clean: ['app.css', 'app.js'],
 
     sass: {
+      options: {
+        compass: true,
+        require: ['sass-css-importer'],
+        sourcemap: true
+      },
       dev: {
         options: {
-          style: 'expanded',
-          debugInfo: true,
-          lineNumbers: true,
-          compass: true,
-          require: ['sass-css-importer']
+          style: 'expanded'
+        },
+        files: {
+          'app.css': 'scss/app.scss'
+        }
+      },
+      dist: {
+        options: {
+          style: 'compressed'
         },
         files: {
           'app.css': 'scss/app.scss'
@@ -37,12 +47,14 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         options: {
-          sourceMap: 'source-map.js'
+          sourceMap: 'source-map.js',
+          report: 'gzip'
         },
         files: {
           'app.js': [
             'vendor/react/react.min.js',
             'vendor/promise-0.1.1.min/index.js',
+            'vendor/numeral/numeral.js',
             'js/index.js'
           ]
         }
@@ -75,6 +87,11 @@ module.exports = function(grunt) {
     'sass:dev',
     'concat:dev',
     'watch'
+  ]);
+  grunt.registerTask('dist', [
+    'clean',
+    'sass:dist',
+    'uglify:dist'
   ]);
   grunt.registerTask('default', ['dev']);
 
