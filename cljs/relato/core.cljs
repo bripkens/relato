@@ -15,21 +15,21 @@
                      :development-users (parse-number (nth % 2))
                      :page-rank (parse-number (last %))}) datasets)))
 
-(def items-per-page 50)
+(def items-per-page 10)
 
-(def app-state (atom {:npm-projects [{:name "foo"}]
+(def app-state (atom {:npm-projects []
                       :page 0
-                      :sort {:predicate :page-rank
-                             :order :desc}}))
+                      :sort {:property "pageRank"
+                             :ascending false}}))
 
 (defn npm-data-row [data owner]
   (om/component
     (dom/tr nil
-      (dom/td nil (:name data))
-      (dom/td nil (+ (:runtime-users data) (:development-users data)))
-      (dom/td nil (:runtime-users data))
-      (dom/td nil (:development-users data))
-      (dom/td nil (:page-rank data)))))
+      (dom/td nil (get data "name"))
+      (dom/td nil (+ (get data "runtimeUsers") (get data "developmentUsers")))
+      (dom/td nil (get data "runtimeUsers"))
+      (dom/td nil (get data "developmentUsers"))
+      (dom/td nil (get data "pageRank")))))
 
 (defn get-visible-datasets [items page]
   (if (empty? items)
@@ -38,12 +38,31 @@
             (* page items-per-page)
             (min (count items) (+ (* page items-per-page) items-per-page)))))
 
+(defn get-sorted-projects [sort-config projects]
+  (let [property (:property sort-config)
+        ascending (:ascending sort-config)
+        sorted (js/getProjectDataSortedBy property ascending)]
+      [sorted]))
+
 (defn npm-data-table [data owner]
   (om/component
     (dom/table nil
       (dom/thead nil
         (dom/tr nil
-          (dom/th nil "Name")
+          (dom/th #js {:onClick (fn []
+                                  (om/transact!
+                                    data
+                                    [:sort :predicate]
+                                    (fn [_]
+                                      :name))
+                                  (om/transact!
+                                    data
+                                    :npm-projects
+                                    (fn [_]
+                                      (into []
+                                            (get-sorted-projects (assoc (:sort data) :predicate :name)
+                                                                 (:npm-projects data))))))}
+                  "Name")
           (dom/th nil "# Users")
           (dom/th nil "# Runtime Users")
           (dom/th nil "# Development Users")
@@ -59,41 +78,47 @@
                                        items-per-page))
           page (:page data)]
       (dom/ul #js {:className "pagination"}
-        ; TODO deactivate button when on first page
         (dom/li nil
           (dom/a #js {:dangerouslySetInnerHTML #js {:__html "&laquo;"}
-                      :onClick #(om/transact! data :page dec)}
+                      :onClick #(when (>= (dec page) 0)
+                                  (om/transact! data :page dec))}
                  nil))
         (dom/li nil
           (dom/span nil (str "Page " (+ 1 page) " / " page-count)))
         (dom/li nil
-          ; TODO deactivate button when on last page
           (dom/a #js {:dangerouslySetInnerHTML #js {:__html "&raquo;"}
-                      :onClick #(om/transact! data :page inc)}
+                      :onClick #(if (< (inc page) page-count)
+                                  (om/transact! data :page inc))}
                  nil))))))
 
+(defn Relato [app owner]
+  (reify
+    om/IDidMount
+    (did-mount [_ _]
+      (xhr/send "stats.csv"
+                (fn [event]
+                  (let [text (-> event
+                                 .-target
+                                 .getResponseText)
+                        data (js/loadProjectData text)]
+                      (om/transact!
+                         app
+                         :npm-projects
+                         (fn [_]
+                           (into []
+                                 (get-sorted-projects (:sort app)
+                                                      data))))))))
+    om/IRender
+    (render [_]
+      (if (empty? (:npm-projects app))
+        (dom/div nil "Please wait a second")
+        (dom/div nil
+          (om/build npm-data-table app)
+          (om/build pagination app))))))
+
+(set! *print-fn* #(.log js/console %))
+
 (om/root app-state
-         (fn [app owner]
-           (reify
-             om/IDidMount
-             (did-mount [_ _]
-               (xhr/send "stats.csv"
-                         (fn [event]
-                           (let [data (-> event
-                                          .-target
-                                          .getResponseText
-                                          convert-csv)]
-                             (om/transact! app
-                                           :npm-projects
-                                           (fn [_] (into [] data)))))))
-             om/IRender
-             (render [_]
-               (dom/div nil
-                 (om/build npm-data-table app)
-                 (om/build pagination app)))))
+         Relato
          (.getElementById js/document "npm-data"))
-
-
-
-
 

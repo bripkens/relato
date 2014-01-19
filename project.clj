@@ -9,5 +9,13 @@
               :source-paths ["cljs"]
               :compiler {:output-to "app.js"
                          :optimizations :whitespace
-                         :pretty-print true
-                         :source-maps true}}]})
+                         :pretty-print true}}
+             {:id "release"
+              :source-paths ["cljs"]
+              :compiler {:output-to "app.js"
+                         :optimizations :advanced
+                         :pretty-print false
+                         :preamble ["vendor/react/react.min.js"]
+                         :externs ["react.js"]
+                         :closure-warnings
+                         {:non-standard-jsdoc :off}}}]})

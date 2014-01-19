@@ -8,3 +8,4 @@ vendor/
 target/
 .lein-repl-history
 stats.csv
+stats_partial.csv
